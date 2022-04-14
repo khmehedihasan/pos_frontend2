@@ -1,9 +1,9 @@
 import React from 'react';
-
+import Layout from '../components/Layout';
 function Home() {
   return (
-    <div className=" bg-blue-400 text-white">
-        home
+    <div className=" ">
+        <Layout />
     </div>
   )
 }
