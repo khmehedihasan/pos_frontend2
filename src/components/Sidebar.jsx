@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom';
 // import OutsideClick from '../hooks/OutsideClick';
 import SideBarToggler from './SideBarToggler';
+import MinSideBarToggler from './MinSideBarToggler';
 
-function Sidebar() {
+function Sidebar({bar, mbar}) {
 
     const [active, setActive] = useState(-1);
     const [show, setShow] = useState('-ml-80');
@@ -143,19 +144,41 @@ function Sidebar() {
         },
     ]
   return (
-    <div className=' w-60 h-screen shrink-0 flex flex-col'>
-        <Link to='/'><div className=' w-full py-4 bg-blue-500 text-center text-2xl text-white'>SKY MART</div></Link>
-        <div className=' w-60 h-full bg-slate-50'>
-        <NavLink to='/dashboard'  onClick={()=> setShow('-ml-80')} className={({isActive})=>isActive? 'pt-4 no-underline hover:text-blue-300 block pl-6 text-blue-300 ':'pt-4 no-underline hover:text-blue-300 block pl-6 text-black '}  ><i className="fa-solid fa-chart-column pr-2"></i> Dashboard </NavLink>
-            {
-                data.map((data,index)=>{
-                    return(
-                        <SideBarToggler key={index} index={index} activeIndex={active} setShow={setShow} setActive={setActive} data={data} />
-                    )
-                })
-            }
+      <>
+        {
+          (mbar === false)?
+          <div className={`${bar} transition-all duration-700 md:ml-0 w-60 h-screen shrink-0 flex flex-col`}>
+            <Link to='/'><div className=' w-60 py-4 h-16 bg-blue-500 text-center text-2xl text-white overflow-hidden'>SKY MART</div></Link>
+            <div className=' w-60 h-full bg-slate-50'>
+                <NavLink to='/dashboard'  onClick={()=> setShow('-ml-80')} className={({isActive})=>isActive? 'pt-4 no-underline hover:text-blue-300 block pl-6 text-blue-300 ':'pt-4 no-underline hover:text-blue-300 block pl-6 text-black '}  ><i className="fa-solid fa-chart-column pr-2"></i> Dashboard </NavLink>
+                {
+                    data.map((data,index)=>{
+                        return(
+                            <SideBarToggler key={index} index={index} activeIndex={active} setShow={setShow} setActive={setActive} data={data} />
+                        )
+                    })
+                }
+            </div>
         </div>
-    </div>
+          :
+          <div className=' w-14 transition-all duration-700 h-screen '>
+            <Link to='/'><div className=' w-full py-4 bg-blue-500 text-center text-2xl text-white'>SM</div></Link>
+            <div className=' w-14 h-full bg-slate-50'>
+                <NavLink to='/dashboard'  onClick={()=> setShow('-ml-80')} className={({isActive})=>isActive? 'pt-4 no-underline hover:text-blue-300 block pl-2 text-blue-300 ':'pt-4 no-underline hover:text-blue-300 block pl-2 text-black '}  ><i className="fa-solid fa-chart-column pr-2"></i> </NavLink>
+                {
+                    data.map((data,index)=>{
+                        return(
+                            <MinSideBarToggler key={index} index={index} activeIndex={active} setShow={setShow} setActive={setActive} data={data} />
+                        )
+                    })
+                }
+            </div>
+      </div>
+        }
+      </>
+
+
+
   )
 }
 
