@@ -11,10 +11,12 @@ function Nav({bar, setBar, mbar, setmBar}) {
   console.log('nav')
   
   function toggleBar(){
-    if(bar === '-ml-60'){
-      setBar('-ml-0');
+    if(bar.bar === 'w-0'){
+      setBar({bar:'w-3/5',nav:'w-2/5 shrink-0'});
+      console.log('no')
     }else{
-      setBar('-ml-60');
+      setBar({bar:'w-0',nav:'w-full'});
+      console.log('ok')
     }
   }
 
@@ -25,11 +27,11 @@ function Nav({bar, setBar, mbar, setmBar}) {
       setmBar(false);
     }
   }
-
+  // 
   return (
-    <nav className='w-full h-16 bg-blue-500 text-white flex items-center justify-between px-4 border-l border-b border-blue-400 '>
+    <nav className={`${mbar?'w-[calc(100%-56px)]':'md:w-3/4 lg:w-4/5 xl:w-10/12'} w-[calc(100%-56px)] transition-all duration-700  float-right h-screen-2 bg-blue-500 text-white flex items-center justify-between px-4 border-l border-b border-blue-400`}>
       <div className=' w-full mr-2 md:mr-6 flex items-center justify-start md:justify-between'>
-          <div onClick={toggleBar} className=' md:hidden hover:bg-slate-700/25 hover:rounded-sm py-1 px-2 mr-3'><i className="fa-solid fa-bars"></i></div>
+          {/* <div onClick={toggleBar} className=' md:hidden hover:bg-slate-700/25 hover:rounded-sm py-1 px-2 mr-3'><i className="fa-solid fa-bars"> b1</i></div> */}
           <div onClick={togglemBar} className=' hidden md:block hover:bg-slate-700/25 hover:rounded-sm py-1 px-2 mr-3'><i className="fa-solid fa-bars"></i></div>
           <div className=' w-48 flex gap-2'>
               <Tooltip to='/' icon={<i className="fa-solid fa-circle-plus"></i>} />
