@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../components/Layout';
 function Home() {
+  console.log('home')
   return (
     <div className=" ">
-        <Layout />
+        <h1>This is home page.</h1>
     </div>
   )
 }
