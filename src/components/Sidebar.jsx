@@ -34,7 +34,7 @@ function Sidebar({bar, mbar}) {
             icon: <i className="fa fas fa-cubes pr-2"></i>,
             links:[
                 {name:'List Products',link:'/'},
-                {name:'Add Product',link:'/'},
+                {name:'Add Product',link:'/addProduct'},
                 {name:'Print Labels',link:'/'},
                 {name:'Variations',link:'/'},
                 {name:'Import Products',link:'/'},
@@ -137,9 +137,9 @@ function Sidebar({bar, mbar}) {
       <>
         {
           (mbar === false)?
-          <div className={`${bar} transition-all duration-700 md:ml-0 w-60 h-screen shrink-0 flex flex-col`}>
-            <Link to='/dashboard'><div className=' w-60 py-4 h-16 bg-blue-500 text-center text-2xl text-white overflow-hidden'>SKY MART</div></Link>
-            <div className=' w-60 h-full bg-slate-50'>
+          <div className={`${bar} hidden  md:w-1/4 lg:w-1/5 xl:w-2/12 float-left  transition-all duration-700 md:ml-0 h-screen  md:flex flex-col `}>
+            <Link to='/dashboard'><div className=' py-4 h-screen-2 bg-blue-500 text-center text-2xl text-white overflow-hidden'>SKY MART</div></Link>
+            <div className=' h-full bg-slate-50'>
                 <NavLink to='/dashboard' className={({isActive})=>isActive? 'pt-4 no-underline hover:text-blue-300 block pl-6 text-blue-300 ':'pt-4 no-underline hover:text-blue-300 block pl-6 text-black '}  ><i className="fa-solid fa-chart-column pr-2"></i> Dashboard </NavLink>
                 {
                     data.map((data,index)=>{
@@ -150,10 +150,10 @@ function Sidebar({bar, mbar}) {
                 }
             </div>
         </div>
-          :
-          <div className=' w-14 transition-all duration-700 h-screen flex flex-col '>
-            <Link to='/'><div className=' w-full py-4 bg-blue-500 text-center text-2xl text-white'>SM</div></Link>
-            <div className=' w-14 h-full bg-slate-50'>
+       :
+       <div className=' w-[calc(0%+56px)] float-left relative transition-all duration-700 h-screen flex flex-col '>
+            <Link to='/dashboard'><div className=' w-[calc(0%+56px)] h-screen-2 py-4 bg-blue-500 text-center text-2xl text-white'>SM</div></Link>
+            <div className='  w-[calc(0%+56px)] h-full bg-slate-50'>
                 <NavLink to='/dashboard' className={({isActive})=>isActive? 'pt-4 no-underline hover:text-blue-300 block pl-4 text-blue-300 ':'pt-4 no-underline hover:text-blue-300 block pl-4 text-black '}  ><i className="fa-solid fa-chart-column pr-2"></i> </NavLink>
                 {
                     data.map((data,index)=>{
@@ -163,8 +163,22 @@ function Sidebar({bar, mbar}) {
                     })
                 }
             </div>
-      </div>
-        }
+        </div>
+   } 
+
+        <div className=' w-[calc(0%+56px)] md:hidden float-left relative transition-all duration-700 h-screen flex flex-col '>
+            <Link to='/dashboard'><div className=' w-[calc(0%+56px)] h-screen-2 py-4 bg-blue-500 text-center text-2xl text-white'>SM</div></Link>
+            <div className='  w-[calc(0%+56px)] h-full bg-slate-50'>
+                <NavLink to='/dashboard' className={({isActive})=>isActive? 'pt-4 no-underline hover:text-blue-300 block pl-4 text-blue-300 ':'pt-4 no-underline hover:text-blue-300 block pl-4 text-black '}  ><i className="fa-solid fa-chart-column pr-2"></i> </NavLink>
+                {
+                    data.map((data,index)=>{
+                        return(
+                            <MinSideBarToggler key={index} index={index} activeIndex={active} setActive={setActive} data={data} />
+                        )
+                    })
+                }
+            </div>
+        </div>
       </>
 
 
