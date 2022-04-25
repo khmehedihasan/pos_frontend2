@@ -22,7 +22,7 @@ function MinSideBarToggler({data, index, activeIndex, setActive}){
             {
                 data.links.map((link,indx)=>{
                     return(
-                        <NavLink to={link.link} key={indx} className={" no-underline text-zinc-500 hover:text-black block pl-7"} ><span className=' text-lg'>→</span> <span className=' text-sm'>{link.name}</span></NavLink>
+                        <NavLink to={link.link} key={indx} className={(e)=>e.isActive?' font-bold no-underline text-zinc-700 hover:text-black block pl-7':'no-underline text-zinc-500 hover:text-black block pl-7'} ><span className=' text-lg'>→</span> <span className=' text-sm'>{link.name}</span></NavLink>
                     )
                 })
             }
