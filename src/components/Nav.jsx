@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
-import { Link, NavLink  } from 'react-router-dom';
+import { Link, NavLink, useNavigate  } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import url from '../url';
+
 import { Tooltip } from './Button';
 
 function Nav({bar, setBar, mbar, setmBar}) {
 
   const [ show, setShow] = useState('hidden');
+  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const navigate = useNavigate();
   const date = new Date();
   const d = date.toLocaleDateString();
 
   console.log('nav')
   
-  function toggleBar(){
-    if(bar.bar === 'w-0'){
-      setBar({bar:'w-3/5',nav:'w-2/5 shrink-0'});
-      console.log('no')
-    }else{
-      setBar({bar:'w-0',nav:'w-full'});
-      console.log('ok')
-    }
-  }
+  // function toggleBar(){
+  //   if(bar.bar === 'w-0'){
+  //     setBar({bar:'w-3/5',nav:'w-2/5 shrink-0'});
+  //     console.log('no')
+  //   }else{
+  //     setBar({bar:'w-0',nav:'w-full'});
+  //     console.log('ok')
+  //   }
+  // }
 
   function togglemBar(){
     if(mbar === false){
@@ -27,7 +32,21 @@ function Nav({bar, setBar, mbar, setmBar}) {
       setmBar(false);
     }
   }
-  // 
+
+  function logOut(){
+
+    removeCookie('auth',[{expires: Date.now()}]);
+
+    fetch(`${url}/user/logout`,{method:'DELETE',mode:'cors',credentials:'include'}).then((data)=>data.json()).then((data)=>{
+        navigate('/logIn');
+    });
+
+}
+
+
+
+
+
   return (
     <nav className={`${mbar?'w-[calc(100%-56px)]':'md:w-3/4 lg:w-4/5 xl:w-10/12'} w-[calc(100%-56px)] transition-all duration-700  float-right h-screen-2 bg-blue-500 text-white flex items-center justify-between px-4 border-l border-b border-blue-400`}>
       <div className=' w-full mr-2 md:mr-6 flex items-center justify-start md:justify-between'>
@@ -51,10 +70,10 @@ function Nav({bar, setBar, mbar, setmBar}) {
                       <h4 className="text-sm text-white">Admin</h4>
                       <h3 className=" text-md sm:text-lg text-white font-bold">MD. Mehedi Hasan</h3>
                   </div >
-                  <div className=" bg-slate-500 ">
+                  <div className=" bg-slate-600 ">
                       <NavLink  className=" w-full py-2 pl-3 cursor-pointer hover:bg-yellow-400 hover:text-white block" to="/" ><i className="fa-solid fa-user"></i> My Profile</NavLink>
                       <NavLink  className=" w-full py-2 pl-3 cursor-pointer hover:bg-blue-400 hover:text-white block" to="/" ><i className="fa-solid fa-gear"></i> Settings</NavLink>
-                      <button  className=" w-full py-2 pl-3 hover:bg-red-600 hover:text-white text-left"><i className="fa-solid fa-right-from-bracket"></i> Log Out</button>
+                      <button onClick={logOut}  className=" w-full py-2 pl-3 hover:bg-red-600 hover:text-white text-left"><i className="fa-solid fa-right-from-bracket"></i> Log Out</button>
                   </div>
               </div>
           </div>
