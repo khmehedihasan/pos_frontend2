@@ -19,9 +19,10 @@ function SideBarToggler({data, index, activeIndex, setActive, setShow}){
         <div onClick={()=> active()} className={`w-full text-md pl-6 cursor-pointer hover:bg-zinc-200/50 ${(activeIndex === index)? 'text-gray-600 font-bold p-1':'p-2 text-gray-600 '}`}>{data.icon} {data.title}</div>
         <div className={`ease-in-out duration-700 ${(activeIndex === index)? 'h-max' :'hidden' } w-full `}>
             {
+                // ` no-underline text-zinc-500 hover:text-black block pl-7`
                 data.links.map((link,indx)=>{
                     return(
-                        <NavLink to={link.link} key={indx} className={" no-underline text-zinc-500 hover:text-black block pl-7"} ><span className=' text-lg'>→</span> <span className=' text-sm'>{link.name}</span></NavLink>
+                        <NavLink to={link.link} key={indx} className={(e)=>e.isActive?' font-bold no-underline text-zinc-700 hover:text-black block pl-7':'no-underline text-zinc-500 hover:text-black block pl-7'} ><span className=' text-lg'>→</span> <span className=' text-sm'>{link.name}</span></NavLink>
                     )
                 })
             }
