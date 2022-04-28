@@ -43,7 +43,7 @@ function EditCategory({props}) {
 
 
   return (
-    <Form1 title="Add Category">
+    <Form1 title="Edit Category">
         <Input1 onChange={set} name="name" placeholder="Enter category name:" value={value.name} lavel="Category name:" />
         <Textarea onChange={set} name="description" placeholder="Enter category description:" value={value.description} lavel="Category description:" />
         <Button1 click={send} name="Save" />
