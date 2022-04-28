@@ -44,16 +44,15 @@ function AddBrand() {
         <Input1 onChange={set} name="name" placeholder="Enter brand name:" value={value.name} lavel="Brand name:" />
         <Textarea onChange={set} name="description" placeholder="Enter brand description:" value={value.description} lavel="Brand description:" />
         <Select onChange={set}  name="categoryId" value={value.categoryId}  id="input4"  lavel="Select category :">
-                <Option value="" disable={true}>Select a category</Option>
-                    {
-                        category.map((data, index)=>{
-                            return(
-                                <Option key={index} value={data._id}>{data.name}</Option>
-                            )
-                        })
-                    }
-                    
-                </Select>
+          <Option value="" disable={true}>Select a category</Option>
+          {
+              category.map((data, index)=>{
+                  return(
+                      <Option key={index} value={data._id}>{data.name}</Option>
+                  )
+              })
+          }
+        </Select>
         <Button1 click={send} name="Save" />
     </Form1>
 
