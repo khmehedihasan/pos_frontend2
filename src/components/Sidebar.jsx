@@ -25,8 +25,8 @@ function Sidebar({bar, mbar}) {
             links:[
                 {name:'Suppliers',link:'/'},
                 {name:'Customers',link:'/'},
-                {name:'Customer Groups',link:'/'},
-                {name:'Import Contacts',link:'/'}
+                // {name:'Customer Groups',link:'/'},
+                // {name:'Import Contacts',link:'/'}
             ]
         },
         {
