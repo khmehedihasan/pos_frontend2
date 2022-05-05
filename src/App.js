@@ -24,6 +24,15 @@ import AddProduct from './pages/product/AddProduct';
 import AllProduct from './pages/product/AllProduct';
 import EditProduct from './pages/product/EditProduct';
 
+import AllSupplier from './pages/supplier/AllSupplier';
+import AddSupplier from './pages/supplier/AddSupplier';
+import EditSupplier from './pages/supplier/EditSupplier';
+
+import AddCustomer from './pages/customer/AddCustomer';
+import AllCustomer from './pages/customer/AllCustomer';
+import EditCustomer from './pages/customer/EditCustomer';
+
+
 
 
 function App() {
@@ -55,6 +64,14 @@ function App() {
           <Route path='addProduct' element={<AddProduct />} />
           <Route path='allProduct' element={<AllProduct />} />
           <Route path='editProduct/:id' element={<EditProduct />} />
+
+          <Route path='allSupplier' element={<AllSupplier />} />
+          <Route path='addSupplier' element={<AddSupplier />} />
+          <Route path='editSupplier/:id' element={<EditSupplier />} />
+
+          <Route path='allCustomer' element={<AllCustomer />} />
+          <Route path='addCustomer' element={<AddCustomer />} />
+          <Route path='editCustomer/:id' element={<EditCustomer />} />
         </Route>
       </Route>
 
