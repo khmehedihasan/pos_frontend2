@@ -23,8 +23,8 @@ function Sidebar({bar, mbar}) {
             title:'Contacts',
             icon: <i className="fa fas fa-address-book  pr-2"></i>,
             links:[
-                {name:'Suppliers',link:'/'},
-                {name:'Customers',link:'/'},
+                {name:'Suppliers',link:'/AllSupplier'},
+                {name:'Customers',link:'/AllCustomer'},
                 // {name:'Customer Groups',link:'/'},
                 // {name:'Import Contacts',link:'/'}
             ]
