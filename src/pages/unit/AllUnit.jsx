@@ -49,7 +49,7 @@ useEffect(()=>{
 
     return () => setUnit({data:[],next:{},previous:{}});
 
-},[page, limit]);
+},[page, src, limit]);
 
 useEffect(()=>{
     if(src !== ''){
