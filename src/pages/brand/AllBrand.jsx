@@ -52,7 +52,7 @@ useEffect(()=>{
 
     return () => setBrand({data:[],next:{},previous:{}});
 
-},[page, limit]);
+},[page, src, limit]);
 
 useEffect(()=>{
     if(src !== ''){
