@@ -37,7 +37,7 @@ function EditCategory({props}) {
         }
     });
 
-  },[]);
+  },[id]);
 
 
 
