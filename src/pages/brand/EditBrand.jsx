@@ -45,7 +45,7 @@ function EditBrand() {
       }
   });
 
-  },[]);
+  },[id]);
 
 
 
