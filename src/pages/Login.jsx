@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { Alert1, Alert2, AlertContainer } from '../components/Alert';
+import { Alert2, AlertContainer } from '../components/Alert';
 import url from '../url';
 
 function LogIn(){
     const [email, setEmail] = useState('demo@gmail.com');
     const [password, setPassword] = useState('1234');
-    // const [alert, setAlert] = useState([]);
+    const [alert, setAlert] = useState([]);
     const navigate = useNavigate()
 
 
     function send(){
-        // if(email === ''){
-        //     setAlert((alert)=>[...alert, <Alert2 key={ Date.now()} title="Faild!" message='Email is required.' />]);
-        // }
+        if(email === ''){
+            setAlert((alert)=>[...alert, <Alert2 key={ Date.now()} title="Faild!" message='Email is required.' />]);
+        }
         
-        // if( password === ''){
-        //     setAlert((alert)=>[...alert, <Alert2 key={ Date.now()} title="Faild!" message='password is required.' />]);
-        // }
+        if( password === ''){
+            setAlert((alert)=>[...alert, <Alert2 key={ Date.now()} title="Faild!" message='password is required.' />]);
+        }
 
         if(email !=='' & password !== ''){
             fetch(`${url}/user/login`,{
@@ -49,14 +49,14 @@ function LogIn(){
         <>
             <div className=" relative w-screen h-screen bg-login bg-center bg-no-repeat bg-cover contrast-150 shadow-2xl flex justify-center items-center">
                 <div className= " absolute top-10 right-2">
-                    {/* <AlertContainer>
+                    <AlertContainer>
                         {alert}
-                    </AlertContainer> */}
+                    </AlertContainer>
                 </div>
 
                 <div className=" lgin w-11/12 md:w-3/5 lg:w-2/4 xl:w-1/3 h-96 mx-auto ">
                     <div >
-                        <h1 className=" text-center text-cyan-300 text-3xl pb-3 border-b border-cyan-400"> ClassicIt POS</h1>
+                        <h1 className=" text-center text-cyan-300 text-3xl pb-3 border-b border-cyan-400"> KH POS</h1>
                     </div>
                     <form className=" flex flex-col justify-center p-3 pt-10 gap-y-2" >
                         <label className=" text-cyan-300" htmlFor="email">Email:</label>
