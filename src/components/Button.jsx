@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 
 const Tooltip = ({to, name, icon}) => {
   return (
-    <Link className=' bg-green-400 hover:bg-green-500 py-1 px-2' to={to}>{icon} {name}</Link> 
+    <Link className=' bg-cyan-400 hover:bg-cyan-500 py-1 px-2' to={to}>{icon} {name}</Link> 
   )
 }
 
 function Button1({name, click}){
   return(
-      <button type="button" onClick={click} className=" bg-blue-600 hover:bg-blue-700 text-white px-10 py-1 mt-5 mr-1 rounded-sm">{name}</button>
+      <button type="button" onClick={click} className=" bg-cyan-400 hover:bg-cyan-300 text-white px-10 py-1 mt-5 mr-1 rounded-sm">{name}</button>
   )
 }
 
