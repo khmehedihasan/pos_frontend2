@@ -140,8 +140,8 @@ function Sidebar({bar, mbar}) {
       <>
         {
           (mbar === false)?
-          <div className={`${bar} hidden  md:w-1/4 lg:w-1/5 xl:w-2/12 float-left  transition-all duration-700 md:ml-0 h-screen  md:flex flex-col `}>
-            <Link to='/dashboard'><div className=' py-4 h-screen-2 bg-blue-500 text-center text-2xl text-white overflow-hidden'>SKY MART</div></Link>
+          <div className={`${bar} hidden  md:w-1/4 lg:w-1/5 xl:w-2/12 float-left transition-all duration-700 md:ml-0 h-screen  md:flex flex-col `}>
+            <Link to='/dashboard'><div className=' py-4 h-screen-2 bg-dark-blue-2 text-center text-2xl text-white overflow-hidden'>KH POS</div></Link>
             <div className=' h-full bg-slate-50'>
                 <NavLink to='/dashboard' className={({isActive})=>isActive? 'pt-4 no-underline hover:text-blue-300 block pl-6 text-blue-300 ':'pt-4 no-underline hover:text-blue-300 block pl-6 text-black '}  ><i className="fa-solid fa-chart-column pr-2"></i> Dashboard </NavLink>
                 {
@@ -155,7 +155,7 @@ function Sidebar({bar, mbar}) {
         </div>
        :
        <div className=' w-[calc(0%+56px)] float-left relative transition-all duration-700 h-screen flex flex-col '>
-            <Link to='/dashboard'><div className=' w-[calc(0%+56px)] h-screen-2 py-4 bg-blue-500 text-center text-2xl text-white'>SM</div></Link>
+            <Link to='/dashboard'><div className=' w-[calc(0%+56px)] h-screen-2 py-4 bg-dark-blue-2 text-center text-2xl text-white'>KH</div></Link>
             <div className='  w-[calc(0%+56px)] h-full bg-slate-50'>
                 <NavLink to='/dashboard' className={({isActive})=>isActive? 'pt-4 no-underline hover:text-blue-300 block pl-4 text-blue-300 ':'pt-4 no-underline hover:text-blue-300 block pl-4 text-black '}  ><i className="fa-solid fa-chart-column pr-2"></i> </NavLink>
                 {
@@ -170,7 +170,7 @@ function Sidebar({bar, mbar}) {
    } 
 
         <div className=' w-[calc(0%+56px)] md:hidden float-left relative transition-all duration-700 h-screen flex flex-col '>
-            <Link to='/dashboard'><div className=' w-[calc(0%+56px)] h-screen-2 py-4 bg-blue-500 text-center text-2xl text-white'>SM</div></Link>
+            <Link to='/dashboard'><div className=' w-[calc(0%+56px)] h-screen-2 py-4 bg-dark-blue-2 text-center text-2xl text-white'>KH</div></Link>
             <div className='  w-[calc(0%+56px)] h-full bg-slate-50'>
                 <NavLink to='/dashboard' className={({isActive})=>isActive? 'pt-4 no-underline hover:text-blue-300 block pl-4 text-blue-300 ':'pt-4 no-underline hover:text-blue-300 block pl-4 text-black '}  ><i className="fa-solid fa-chart-column pr-2"></i> </NavLink>
                 {
