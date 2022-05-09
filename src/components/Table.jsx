@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Input1, Option, Select } from './Input';
 
-function Table({rowNames, to, name, children, width, srcVal, srcFunc, data, page, limit}){
+function Table({rowNames, to, name, children, srcVal, srcFunc, data, page, limit, setLimit}){
 
 
     const buttons = [];
@@ -15,14 +15,14 @@ function Table({rowNames, to, name, children, width, srcVal, srcFunc, data, page
 
     return(
         <>
-        <div className={`${width} mx-auto p-2`}>
-            <div className={` ${width}   p-2 h-32 mt-20 bg-dark-blue-1 mx-auto rounded-tl-md rounded-tr-md`}>
+        <div className={` w-max md:w-full flex flex-col mx-auto p-2`}>
+            <div className={` w-full   p-2 h-32 mt-20 bg-dark-blue-1 mx-auto rounded-tl-md rounded-tr-md`}>
                     <div>
                         <Link to={to}><button className=" rounded-3xl bg-cyan-200 hover:bg-dark-blue-1 border-2 border-cyan-200 hover:text-white   float-right mt-2 mr-2 px-2 py-1">{name}</button></Link>
                     </div>
                     <div className=' mb-2'>
                         <div className=' w-36 md:w-56'>
-                            <Select onChange={(e)=>limit(e.target.value)}>
+                            <Select value={limit} onChange={(e)=>setLimit(e.target.value)}>
                                 <Option value={3}>3</Option>
                                 <Option value={5}>5</Option>
                                 <Option value={10}>10</Option>
@@ -36,7 +36,7 @@ function Table({rowNames, to, name, children, width, srcVal, srcFunc, data, page
                         </div>
                     </div>
                 </div>
-                <table className={` ${width} mx-auto table-auto border-collapse border border-slate-500`}>
+                <table className={` w-full mx-auto table-auto border-collapse border border-slate-500`}>
                     <thead>
                         <tr>
                             {
@@ -52,7 +52,7 @@ function Table({rowNames, to, name, children, width, srcVal, srcFunc, data, page
                         {children}
                     </tbody>
                 </table>
-                <div className={` ${width} h-auto sm:h-11 mb-10 bg-dark-blue-1 mx-auto rounded-bl-md rounded-br-md text-white flex flex-col sm:flex-row`}>
+                <div className={` w-full h-auto sm:h-11 mb-10 bg-dark-blue-1 mx-auto rounded-bl-md rounded-br-md text-white flex flex-col sm:flex-row`}>
                     <div className=' flex '>
                     {
                         (data.previous.page === 0)? <button className=' h-11 px-2 mr-1 text-gray-400 cursor-not-allowed'>Previous</button>:<button onClick={()=>page(data.previous.page)} className=' h-11 px-2 mr-1'>Previous</button>
