@@ -62,9 +62,7 @@ useEffect(()=>{
 
 
     if(src !== ''){
-        setLoader(true);
         fetch(`${url}/subcategory/search?page=${page}&limit=${limit}&search=${src}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
-            setLoader(false);
             if(data.status === true){
                 setBrand(data.result);
             }
