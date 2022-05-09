@@ -23,8 +23,8 @@ function delet(id){
                 setLoader(true);
                 fetch(`${url}/supplier?page=${page}&limit=${limit}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
                 
+                    setLoader(false);
                     if(data.status === true){
-                        setLoader(false);
                         setSupplier(data.result)
                     }
                 });
@@ -32,8 +32,8 @@ function delet(id){
                 setLoader(true);
                 fetch(`${url}/supplier/search?page=${page}&limit=${limit}&search=${src}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
                 
+                    setLoader(false);
                     if(data.status === true){
-                        setLoader(false);
                         setSupplier(data.result)
                     }
                 });
@@ -49,8 +49,8 @@ useEffect(()=>{
         setLoader(true);
         fetch(`${url}/supplier?page=${page}&limit=${limit}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
         
+            setLoader(false);
             if(data.status === true){;
-                setLoader(false);
                 setSupplier(data.result);
             }
         });
@@ -62,8 +62,9 @@ useEffect(()=>{
 
 useEffect(()=>{
     if(src !== ''){
+        setLoader(true);
         fetch(`${url}/supplier/search?page=${page}&limit=${limit}&search=${src}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
-        
+            setLoader(false);
             if(data.status === true){
                 setSupplier(data.result);
             }
