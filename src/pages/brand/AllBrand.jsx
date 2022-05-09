@@ -3,6 +3,7 @@ import { Delete, Edit } from '../../components/Button';
 import Filter from '../../components/Filter';
 import { Option, Select } from '../../components/Input';
 import Table, { Tr, Td } from '../../components/Table';
+import Loader from '../../components/Loader';
 import url from '../../url'
 
 function AllBrand() {
@@ -12,6 +13,7 @@ const [category, setCategory] = useState([]);
 const [src, setSrc] = useState('');
 const [page, setPage] = useState(1);
 const [limit, setLimit] = useState(3);
+const [loader, setLoader] = useState(true);
 
 
 
@@ -19,18 +21,21 @@ function delet(id){
     fetch(`${url}/subcategory/${id}`,{method:'DELETE',mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
         if(data.status === true){
             if(src === ''){
+                setLoader(true);
                 fetch(`${url}/subcategory?page=${page}&limit=${limit}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
                 
-                    if(data.status === true){;
-                      setBrand(data.result)
+                    if(data.status === true){
+                        setLoader(false);
+                      setBrand(data.result);
                     }
                 });
             }else{
-               
+                setLoader(true);
                 fetch(`${url}/subcategory/search?page=${page}&limit=${limit}&search=${src}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
                 
                     if(data.status === true){
-                      setBrand(data.result)
+                        setLoader(false);
+                      setBrand(data.result);
                     }
                 });
                  
@@ -42,9 +47,11 @@ function delet(id){
 }
 useEffect(()=>{
     if(src === ''){
+        setLoader(true);
         fetch(`${url}/subcategory?page=${page}&limit=${limit}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
         
             if(data.status === true){;
+                setLoader(false);
                 setBrand(data.result);
             }
         });
@@ -56,10 +63,12 @@ useEffect(()=>{
 
 useEffect(()=>{
     if(src !== ''){
+        setLoader(true);
         fetch(`${url}/subcategory/search?page=${page}&limit=${limit}&search=${src}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
         
             if(data.status === true){
-                setBrand(data.result)
+                setLoader(false);
+                setBrand(data.result);
             }
         });
     
@@ -70,11 +79,12 @@ useEffect(()=>{
 
 
 useEffect(()=>{
-
+    setLoader(true);
     fetch(`${url}/category?page=1&limit=0`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
                 
-        if(data.status === true){;
-            setCategory(data.result.data)
+        if(data.status === true){
+            setLoader(false);
+            setCategory(data.result.data);
         }
     });
 
@@ -86,19 +96,20 @@ function search(e){
 
 
 function byCat(cat){
-
+    setLoader(true);
     fetch(`${url}/subcategory/search?page=${page}&limit=${limit}&search=${cat}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
-        
+        setLoader(false);
         if(data.status === true){
-            setBrand(data.result)
+            setBrand(data.result);
         }else{
             setBrand({data:[],next:{},previous:{}})
         }
     });
 }
 
-  return (
-      <>
+  return (<>{
+    loader?<div className=' w-full flex justify-center mt-5 '><Loader /></div>:
+      <div className=' w-max md:w-auto mx-auto'>
         <Filter >
             <div className=' w-80 '>
                 <Select onChange={(e)=>byCat(e.target.value)}  name="categoryId"  id="input4"  lavel="Select category :">
@@ -114,7 +125,7 @@ function byCat(cat){
             </div>
 
         </Filter>
-        <Table to="/addBrand" name="Add Brand" rowNames={["#","Name","Description","Category","Actions"]} page={setPage} limit={setLimit} srcVal={src} srcFunc={search} data={brand} width='w-full'>
+        <Table to="/addBrand" name="Add Brand" rowNames={["#","Name","Description","Category","Actions"]} page={setPage} limit={limit} setLimit={setLimit} srcVal={src} srcFunc={search} data={brand} width='w-full'>
                     {
                         brand.data.map(({_id, name, description, category}, index)=>{
                             return(
@@ -133,7 +144,7 @@ function byCat(cat){
                     }
                     
         </Table>
-    </>
-  )
+    </div>
+}</>)
 }
 export default AllBrand;
