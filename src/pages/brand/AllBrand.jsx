@@ -23,18 +23,16 @@ function delet(id){
             if(src === ''){
                 setLoader(true);
                 fetch(`${url}/subcategory?page=${page}&limit=${limit}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
-                
+                    setLoader(false);
                     if(data.status === true){
-                        setLoader(false);
                       setBrand(data.result);
                     }
                 });
             }else{
                 setLoader(true);
                 fetch(`${url}/subcategory/search?page=${page}&limit=${limit}&search=${src}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
-                
+                    setLoader(false);
                     if(data.status === true){
-                        setLoader(false);
                       setBrand(data.result);
                     }
                 });
@@ -49,9 +47,8 @@ useEffect(()=>{
     if(src === ''){
         setLoader(true);
         fetch(`${url}/subcategory?page=${page}&limit=${limit}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
-        
+            setLoader(false);
             if(data.status === true){;
-                setLoader(false);
                 setBrand(data.result);
             }
         });
@@ -62,9 +59,12 @@ useEffect(()=>{
 },[page, src, limit]);
 
 useEffect(()=>{
+
+
     if(src !== ''){
+        setLoader(true);
         fetch(`${url}/subcategory/search?page=${page}&limit=${limit}&search=${src}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
-        
+            setLoader(false);
             if(data.status === true){
                 setBrand(data.result);
             }
@@ -80,8 +80,8 @@ useEffect(()=>{
     setLoader(true);
     fetch(`${url}/category?page=1&limit=0`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
                 
+        setLoader(false);
         if(data.status === true){
-            setLoader(false);
             setCategory(data.result.data);
         }
     });
