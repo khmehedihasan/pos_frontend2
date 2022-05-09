@@ -12,7 +12,7 @@ const [page, setPage] = useState(1);
 const [limit, setLimit] = useState(3);
 const [loader, setLoader] = useState(true);
 
-
+console.log(src)
 
 function delet(id){
     fetch(`${url}/customer/${id}`,{method:'DELETE',mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
@@ -60,9 +60,7 @@ useEffect(()=>{
 
 useEffect(()=>{
     if(src !== ''){
-        setLoader(true);
         fetch(`${url}/customer/search?page=${page}&limit=${limit}&search=${src}`,{mode:'cors',credentials:"include"}).then((data)=>data.json()).then((data)=>{
-            setLoader(false);
             if(data.status === true){
                 setCustomer(data.result);
             }
