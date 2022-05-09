@@ -1,4 +1,4 @@
 const url = 'http://localhost:8000'
-//const url = 'https://posapi1.herokuapp.com';
+//const url = 'https://pos-backend2-p.vercel.app';
 
 export default url;
