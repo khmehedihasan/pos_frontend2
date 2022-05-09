@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Alert2, AlertContainer } from '../components/Alert';
+import Loader from '../components/Loader';
 import url from '../url';
 
 function LogIn(){
     const [email, setEmail] = useState('demo@gmail.com');
     const [password, setPassword] = useState('1234');
     const [alert, setAlert] = useState([]);
+    const [loader, setLoader] = useState(false);
     const navigate = useNavigate()
 
 
@@ -20,6 +22,7 @@ function LogIn(){
         }
 
         if(email !=='' & password !== ''){
+            setLoader(true);
             fetch(`${url}/user/login`,{
                 method:'POST', 
                 body:JSON.stringify({email,password}),
@@ -27,18 +30,13 @@ function LogIn(){
 				mode:'cors'
 
             }).then((data)=>data.json(data)).then((data)=>{
-
+                setLoader(false);
                 if(data.status === true){
-                    // setAlert((alert)=>[...alert, <Alert1 key={ Date.now()} title="Successful" message={data.message} />]);
-					
                     document.cookie = `auth = kfjk5kjksdwk23klskj90fj234i209sfj9u4iwej ; max-age=3400; path=/`;
                     navigate('/dashboard');
 					
-                    // setTimeout(()=>{
-                    //     navigate('/dashboard');
-                    // },8000)
                 }else{
-                    // setAlert((alert)=>[...alert, <Alert2 key={ Date.now()} title="Faild!" message={data.message} />]);
+                    setAlert((alert)=>[...alert, <Alert2 key={ Date.now()} title="Faild!" message={data.message} />]);
                 }
             })
         }
@@ -55,6 +53,11 @@ function LogIn(){
                 </div>
 
                 <div className=" lgin w-11/12 md:w-3/5 lg:w-2/4 xl:w-1/3 h-96 mx-auto ">
+                <div className=' w-full flex justify-center z-10 absolute top-0 -mt-24 '>
+                        {
+                            loader?<Loader />:<></>
+                        }     
+                </div>
                     <div >
                         <h1 className=" text-center text-cyan-300 text-3xl pb-3 border-b border-cyan-400"> KH POS</h1>
                     </div>
